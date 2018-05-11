@@ -1,25 +1,24 @@
-# standard-vue-project
+# WebPack4 Vue Demo
 
-> 标准模版，资源文件采用相对路径
+> 基础框架模板，引入iview组件库
 
-## Build Setup
+## 开发说明
 
 ``` bash
-# install dependencies
+# 安装依赖
 npm install
 
-# serve with hot reload at localhost:8080
+# 开发环境启动 webpack-server
 npm run dev
 
-# build for production with minification
+# 生产环境编译
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+##目录结构说明
 
 ``` bash
 --build 构建配置目录
@@ -31,9 +30,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
   --webpack.dev.conf.js webpack开发环境配置
   --webpack.prod.conf.js webpack生产环境配置
 --config 不同环境构建时的相关变量配置
-  --dev.env.js 开发环境配置merge
-  --index.js 基础配置
-  --prod.env.js 生产环境配置merge
+  --index.js 开发配置
 --src 源码目录
   --components 组件目录
   --css 样式目录
