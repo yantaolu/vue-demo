@@ -42,17 +42,28 @@ const webpackConfig = merge(baseWebpackConfig, {
         removeAttributeQuotes: true
       },
       chunksSortMode: 'dependency',
-      chunks: ['manifest', 'vendor', 'index'],
+      chunks: ['manifest', 'vendors', 'index'],
     }),
     ...utils.getMultiPages(),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.SplitChunksPlugin({
-      chunks: 'all',
-      minSize: 1000,
+      chunks: "all",
+      minSize: 20000,
       minChunks: 1,
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
-      name: 'vendor',
+      name: true,
+      cacheGroups: {
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        }
+      }
     }),
 
     new webpack.optimize.RuntimeChunkPlugin({
