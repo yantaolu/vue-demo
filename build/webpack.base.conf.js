@@ -3,8 +3,11 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-function resolve (dir) {
+
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -12,7 +15,7 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: Object.assign({index: './src/index.js'}, utils.getMultiEntry()),
   output: {
-    path: config.build.assetsRoot,
+    path: path.resolve(__dirname, '../dist'),
     filename: '[name].js'
   },
   resolve: {
@@ -60,9 +63,18 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new VueLoaderPlugin(),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        to: path.join(__dirname, '../dist/static'),
+        ignore: ['.*']
+      }
+    ])
+  ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
-    // source contains it (although only uses it if it's native).
     setImmediate: false,
     // prevent webpack from injecting mocks to Node native modules
     // that does not make sense for the client

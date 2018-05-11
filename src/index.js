@@ -8,6 +8,10 @@ import store from './store/index'
 import iView from 'iview'
 import './iview-custom-theme/index.less'
 import './css/global.scss'
+import ajax from './js/ajax'
+Object.assign(Vue.prototype, {
+  _$: ajax
+})
 
 Vue.use(Router)
 Vue.use(iView)
